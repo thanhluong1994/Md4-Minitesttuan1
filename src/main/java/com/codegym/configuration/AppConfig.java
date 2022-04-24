@@ -43,7 +43,7 @@ import java.util.Properties;
 @EnableJpaRepositories("com.codegym.repository")
 @ComponentScan("com.codegym")
 @EnableSpringDataWebSupport
-//@PropertySource("classpath:upload_file.properties")
+@PropertySource("classpath:upload_file.properties")
 public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
 
     private ApplicationContext applicationContext;

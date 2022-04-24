@@ -23,6 +23,14 @@ public class Book {
         this.price=price;
     }
 
+    public Book(String name, int price, String author, String avatar, Category category) {
+        this.name = name;
+        this.price = price;
+        this.author = author;
+        this.avatar = avatar;
+        this.category = category;
+    }
+
     public Book(Long id, String name, int price, String author, Category category) {
         this.id = id;
         this.name = name;
@@ -42,6 +50,10 @@ public class Book {
     }
 
     public Book() {
+
+    }
+
+    public Book(String name, String author, int price, String category, String fileName) {
 
     }
 

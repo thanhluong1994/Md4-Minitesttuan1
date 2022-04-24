@@ -52,15 +52,27 @@ public class BookController {
     @GetMapping("/create-book")
     public ModelAndView showCreateForm(){
         ModelAndView modelAndView=new ModelAndView("/book/create");
-        modelAndView.addObject("book",new Book());
+        modelAndView.addObject("bookForm",new BookForm());
         return modelAndView;
     }
 
     @PostMapping("create-book")
-    public ModelAndView saveBook(@ModelAttribute("book") Book book){
+    public ModelAndView saveBook(BookForm bookForm){
+        MultipartFile multipartFile=bookForm.getAvatar();
+        String fileName= multipartFile.getOriginalFilename();
+        String name=bookForm.getName();
+        String author=bookForm.getAuthor();
+        int price=bookForm.getPrice();
+        Category category=bookForm.getCategory();
+        try {
+            FileCopyUtils.copy(bookForm.getAvatar().getBytes(),new File(fileUpload+fileName));
+        }catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        Book book=new Book(name,price,author,fileName,category);
         bookService.save(book);
         ModelAndView modelAndView=new ModelAndView("/book/create");
-        modelAndView.addObject("bookForm",new Book());
+        modelAndView.addObject("bookForm",new BookForm());
         modelAndView.addObject("message","New book created successfully!");
         return modelAndView;
     }

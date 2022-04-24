@@ -7,6 +7,7 @@ public class BookForm {
     private String name;
     private int price;
     private String author;
+    private Category category;
     private MultipartFile avatar;
 
     public BookForm() {
@@ -20,11 +21,20 @@ public class BookForm {
         this.avatar = avatar;
     }
 
-    public BookForm(String name, int price, String author, MultipartFile avatar) {
+    public BookForm(String name, int price, String author, Category category, MultipartFile avatar) {
         this.name = name;
         this.price = price;
         this.author = author;
+        this.category = category;
         this.avatar = avatar;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public Long getId() {
